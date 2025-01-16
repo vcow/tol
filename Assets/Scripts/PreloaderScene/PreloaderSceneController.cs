@@ -1,5 +1,6 @@
 using Core.Assignments;
 using Core.ScreenLocker;
+using PreloaderScene.Assignments;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace PreloaderScene
 	{
 		[Inject] private readonly IScreenLockerManager _screenLockerManager;
 		[Inject] private readonly ZenjectSceneLoader _sceneLoader;
+		[Inject] private readonly RestoreGameStateAssignment _restoreGameStateAssignment;
 
 		private void Start()
 		{
@@ -19,8 +21,7 @@ namespace PreloaderScene
 		{
 			var initializeQueue = new AssignmentQueue();
 
-			// initializeQueue.Add(_walletModelController);
-			// initializeQueue.Add(_initUnityServices);
+			initializeQueue.Add(_restoreGameStateAssignment);
 			// TODO: Add initialized objects here.
 
 			initializeQueue.CompleteEvent += OnInitializeComplete;

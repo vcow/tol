@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 6158737409499554790}
   - component: {fileID: 6381047532632662231}
   - component: {fileID: 2433954878776954012}
+  - component: {fileID: -5859714051102839602}
   m_Layer: 5
   m_Name: StartScreenButton
   m_TagString: Untagged
@@ -390,3 +391,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 10.6, y: -12.05}
   m_UseGraphicAlpha: 1
+--- !u!114 &-5859714051102839602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085564144606537722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0e6c93b76f4a0ab8ac9f93757c0ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseDownSound: click
+  _mouseUpSound: 
+  _mouseEnterSound: 
+  _mouseExitSound: 

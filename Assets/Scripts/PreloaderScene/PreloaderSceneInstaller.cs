@@ -1,3 +1,4 @@
+using PreloaderScene.Assignments;
 using Zenject;
 
 namespace PreloaderScene
@@ -6,6 +7,7 @@ namespace PreloaderScene
 	{
 		public override void InstallBindings()
 		{
+			Container.Bind<RestoreGameStateAssignment>().AsSingle();
 		}
 	}
 }
