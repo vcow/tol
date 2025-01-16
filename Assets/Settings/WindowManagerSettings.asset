@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4181558f4f407dab6a6586a5f96c7f, type: 3}
+  m_Name: WindowManagerSettings
+  m_EditorClassIdentifier: 
+  _startCanvasSortingOrder: 100
+  _groupHierarchy: []
+  _windowProviders:
+  - {fileID: 11400000, guid: e0dd2cc57725f4445a0da817fb9359a4, type: 2}

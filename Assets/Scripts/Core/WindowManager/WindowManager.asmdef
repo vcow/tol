@@ -1,0 +1,17 @@
+{
+    "name": "WindowManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cab81661596ad4f298d7e19ac7a4165d",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

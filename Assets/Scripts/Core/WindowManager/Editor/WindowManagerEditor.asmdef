@@ -1,0 +1,18 @@
+{
+    "name": "WindowManagerEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e1b4d151644e14fb084b873e75aa8ccc"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
