@@ -2,6 +2,7 @@ using System;
 using Core.WindowManager;
 using Core.WindowManager.Template;
 using Models;
+using Settings;
 using StartScene.Signals;
 using UniRx;
 using UnityEngine;
@@ -29,6 +30,7 @@ namespace UI.Windows
 		[Inject] private readonly IGameModel _gameModel;
 		[Inject] private readonly SignalBus _signalBus;
 		[Inject] private readonly IWindowManager _windowManager;
+		[Inject] private readonly LevelsProvider _levelsProvider;
 
 		private IPlayerModel _selectedItem;
 
@@ -160,7 +162,7 @@ namespace UI.Windows
 			Assert.IsNotNull(playerModel);
 			_selectedItem = playerModel;
 
-			_continueButton.interactable = true;
+			_continueButton.interactable = playerModel.LastLevel.Value < _levelsProvider.Levels.Count;
 			_deleteButton.interactable = true;
 			_replayButton.interactable = playerModel.LastLevel.Value > 0;
 		}

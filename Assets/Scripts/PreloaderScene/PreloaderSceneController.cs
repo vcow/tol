@@ -1,6 +1,7 @@
 using Core.Assignments;
 using Core.ScreenLocker;
 using PreloaderScene.Assignments;
+using Settings;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,7 @@ namespace PreloaderScene
 		[Inject] private readonly RestoreGameStateAssignment _restoreGameStateAssignment;
 		[Inject] private readonly RestoreGameModelAssignment _restoreGameModelAssignment;
 		[Inject] private readonly WatchForGameModelChangesAssignment _watchForGameModelChangesAssignment;
+		[Inject] private readonly LevelsProvider _levelsProvider;
 
 		private void Start()
 		{
@@ -24,6 +26,7 @@ namespace PreloaderScene
 		{
 			var initializeQueue = new AssignmentQueue();
 
+			initializeQueue.Add(_levelsProvider);
 			initializeQueue.Add(_restoreGameStateAssignment);
 			initializeQueue.Add(_restoreGameModelAssignment);
 			initializeQueue.Add(_watchForGameModelChangesAssignment);
