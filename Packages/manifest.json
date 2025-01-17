@@ -51,7 +51,7 @@
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
-        "jp.hadashikick.vcontainer"
+        "jillejr.newtonsoft.json-for-unity"
       ],
       "overrideBuiltIns": false
     }

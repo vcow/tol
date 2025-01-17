@@ -10,7 +10,10 @@ namespace PreloaderScene
 	{
 		[Inject] private readonly IScreenLockerManager _screenLockerManager;
 		[Inject] private readonly ZenjectSceneLoader _sceneLoader;
+
 		[Inject] private readonly RestoreGameStateAssignment _restoreGameStateAssignment;
+		[Inject] private readonly RestoreGameModelAssignment _restoreGameModelAssignment;
+		[Inject] private readonly WatchForGameModelChangesAssignment _watchForGameModelChangesAssignment;
 
 		private void Start()
 		{
@@ -22,6 +25,8 @@ namespace PreloaderScene
 			var initializeQueue = new AssignmentQueue();
 
 			initializeQueue.Add(_restoreGameStateAssignment);
+			initializeQueue.Add(_restoreGameModelAssignment);
+			initializeQueue.Add(_watchForGameModelChangesAssignment);
 			// TODO: Add initialized objects here.
 
 			initializeQueue.CompleteEvent += OnInitializeComplete;

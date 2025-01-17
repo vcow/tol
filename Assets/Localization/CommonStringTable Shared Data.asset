@@ -43,6 +43,46 @@ MonoBehaviour:
     m_Key: music_on
     m_Metadata:
       m_Items: []
+  - m_Id: 237934790828032
+    m_Key: ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238040353071104
+    m_Key: cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238097978613760
+    m_Key: yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238149480472576
+    m_Key: no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252125064978432
+    m_Key: players_caps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263252176003072
+    m_Key: continue_caps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264050238808064
+    m_Key: delete_caps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281222117842944
+    m_Key: delete_player_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281454046076928
+    m_Key: delete_player_message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 285289112133632
+    m_Key: new_player_placeholder
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

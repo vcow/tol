@@ -46,6 +46,47 @@ MonoBehaviour:
     m_Localized: Music on
     m_Metadata:
       m_Items: []
+  - m_Id: 237934790828032
+    m_Localized: Ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238040353071104
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238097978613760
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238149480472576
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252125064978432
+    m_Localized: PLAYERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263252176003072
+    m_Localized: CONTINUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264050238808064
+    m_Localized: DELETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281222117842944
+    m_Localized: Player will be removed!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281454046076928
+    m_Localized: Player {0} will be removed from the list. Their achievements will
+      be lost. Are you sure?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 285289112133632
+    m_Localized: Enter a unique name for the new player
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

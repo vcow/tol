@@ -8,6 +8,7 @@ namespace PreloaderScene
 		public override void InstallBindings()
 		{
 			Container.Bind<RestoreGameStateAssignment>().AsSingle();
+			Container.Bind<RestoreGameModelAssignment>().AsSingle();
 		}
 	}
 }

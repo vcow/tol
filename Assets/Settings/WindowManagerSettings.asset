@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WindowManagerSettings
   m_EditorClassIdentifier: 
   _startCanvasSortingOrder: 100
-  _groupHierarchy: []
+  _groupHierarchy:
+  - top
   _windowProviders:
   - {fileID: 11400000, guid: e0dd2cc57725f4445a0da817fb9359a4, type: 2}
