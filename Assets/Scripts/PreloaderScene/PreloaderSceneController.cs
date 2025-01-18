@@ -26,10 +26,10 @@ namespace PreloaderScene
 		{
 			var initializeQueue = new AssignmentQueue();
 
-			initializeQueue.Add(_levelsProvider);
 			initializeQueue.Add(_restoreGameStateAssignment);
 			initializeQueue.Add(_restoreGameModelAssignment);
 			initializeQueue.Add(_watchForGameModelChangesAssignment);
+			initializeQueue.Add(_levelsProvider);
 			// TODO: Add initialized objects here.
 
 			initializeQueue.CompleteEvent += OnInitializeComplete;

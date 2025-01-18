@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Utils.TouchHelper
+namespace Core.Utils.TouchHelper
 {
 	/// <summary>
 	/// The helper tool for simulating touchscreen touches in Unity editor. Simulates one touch (use LMB)

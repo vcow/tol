@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606f7b1eb5454f99bf35984a41a6e389, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  _rings:
+  - _ringType: 0
+    _ringColor: {r: 1, g: 0, b: 0, a: 1}
+    _ringPrefab: {fileID: 6986069697424992903, guid: 86bc96d53fcb043f3aa591583ea88844, type: 3}
+  - _ringType: 1
+    _ringColor: {r: 0, g: 0.85800004, b: 0.042899963, a: 1}
+    _ringPrefab: {fileID: 6986069697424992903, guid: a9385cd3703724580b360d07a80b5f4b, type: 3}
+  - _ringType: 2
+    _ringColor: {r: 0, g: 0.12330432, b: 0.85882354, a: 1}
+    _ringPrefab: {fileID: 6986069697424992903, guid: 5121b9fac03a64aa9a9a1385fddb0033, type: 3}
+  - _ringType: 3
+    _ringColor: {r: 1, g: 0.9591136, b: 0, a: 1}
+    _ringPrefab: {fileID: 6986069697424992903, guid: fb38798b6b30549c4a2981708b516d60, type: 3}
+  - _ringType: 4
+    _ringColor: {r: 0.95699996, g: 0.95699996, b: 0.95699996, a: 1}
+    _ringPrefab: {fileID: 6986069697424992903, guid: b5e0b421123da43edba9bf82fd880111, type: 3}
+  - _ringType: 5
+    _ringColor: {r: 0.34, g: 0.34, b: 0.34, a: 1}
+    _ringPrefab: {fileID: 6986069697424992903, guid: 9aa157f2d51024893ada9c0cd8a2fb50, type: 3}

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utils.TouchHelper
+namespace Core.Utils.TouchHelper
 {
 	internal class TouchCreator
 	{

@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Models
 {
+	[Serializable]
 	public enum RingColor
 	{
 		Red,
@@ -21,6 +23,8 @@ namespace Models
 		public (IReadOnlyList<RingColor> tower1, IReadOnlyList<RingColor> tower2, IReadOnlyList<RingColor> tower3) GoalState { get; }
 		public int MinStepsNum { get; }
 		public int MaxStepsNum { get; }
+
+		public int NumColors => InitialState.tower1.Count + InitialState.tower2.Count + InitialState.tower3.Count;
 
 		public LevelModel(int index, string rawData)
 		{

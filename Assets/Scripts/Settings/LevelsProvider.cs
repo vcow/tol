@@ -18,6 +18,7 @@ namespace Settings
 		public override void InstallBindings()
 		{
 			Container.Bind<LevelsProvider>().FromInstance(this).AsSingle();
+			_completed = false;
 		}
 
 		void IAssignment.Start()

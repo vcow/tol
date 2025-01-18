@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Activatable;
+using Core.Utils.TouchHelper;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Utils.TouchHelper;
 using Zenject;
 using Object = UnityEngine.Object;
 
