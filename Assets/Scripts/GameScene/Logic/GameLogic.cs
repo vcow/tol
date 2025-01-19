@@ -23,6 +23,8 @@ namespace GameScene.Logic
 
 		public IReadOnlyReactiveProperty<RingColor?> Hands => _hands;
 
+		public int NumColors => _levelModel.NumColors;
+
 		public GameLogic(LevelModel levelModel)
 		{
 			_levelModel = levelModel;

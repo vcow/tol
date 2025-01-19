@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 977364210077304619}
   - component: {fileID: 4988576146759632841}
-  m_Layer: 0
+  - component: {fileID: 9089770324487346308}
+  m_Layer: 6
   m_Name: Pin2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +57,20 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &9089770324487346308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912686775502199172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cc20fa2a54b898c3b7364ed02c57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TowerIndex>k__BackingField: -1
+  <PinIndex>k__BackingField: -1
 --- !u!1 &1251575259043473636
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +81,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9085945810604687610}
   - component: {fileID: 3125157497580057768}
-  m_Layer: 0
+  - component: {fileID: 7808624430238504886}
+  m_Layer: 6
   m_Name: Pin3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +128,20 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &7808624430238504886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251575259043473636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cc20fa2a54b898c3b7364ed02c57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TowerIndex>k__BackingField: -1
+  <PinIndex>k__BackingField: -1
 --- !u!1 &1365275270562811458
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +152,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8482136559573419220}
   - component: {fileID: 4088347264557634790}
-  m_Layer: 0
+  - component: {fileID: 7285471658263536701}
+  m_Layer: 6
   m_Name: Pin1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +199,20 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &7285471658263536701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365275270562811458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cc20fa2a54b898c3b7364ed02c57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TowerIndex>k__BackingField: -1
+  <PinIndex>k__BackingField: -1
 --- !u!1 &4648921745620167956
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +223,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5160746910843924609}
   - component: {fileID: 2207044723068116598}
-  m_Layer: 0
+  - component: {fileID: 8139051386352905791}
+  m_Layer: 6
   m_Name: Pin4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,6 +270,20 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &8139051386352905791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648921745620167956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cc20fa2a54b898c3b7364ed02c57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TowerIndex>k__BackingField: -1
+  <PinIndex>k__BackingField: -1
 --- !u!1 &5185916619510539225
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +294,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4753528793432662596}
   - component: {fileID: 2145902703469316585}
-  m_Layer: 0
+  - component: {fileID: 476442147246370521}
+  m_Layer: 6
   m_Name: Pin5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,6 +341,20 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &476442147246370521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185916619510539225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cc20fa2a54b898c3b7364ed02c57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TowerIndex>k__BackingField: -1
+  <PinIndex>k__BackingField: -1
 --- !u!1 &5496147890501318109
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +474,8 @@ GameObject:
   m_Component:
   - component: {fileID: 807197248014260523}
   - component: {fileID: 8416630855953205620}
-  m_Layer: 0
+  - component: {fileID: 2592547538607345878}
+  m_Layer: 6
   m_Name: Pin6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,6 +521,20 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &2592547538607345878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546055235653250913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cc20fa2a54b898c3b7364ed02c57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TowerIndex>k__BackingField: -1
+  <PinIndex>k__BackingField: -1
 --- !u!1001 &723838292491271304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,6 +590,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
       propertyPath: m_Name
       value: tol_pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -567,6 +661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tol_pin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -633,6 +731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tol_pin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -698,6 +800,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
       propertyPath: m_Name
       value: tol_pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -831,6 +937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tol_pin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -896,6 +1006,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
       propertyPath: m_Name
       value: tol_pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e77c03d29ce2455abb8c4e9819242f1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

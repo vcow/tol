@@ -87,6 +87,14 @@ MonoBehaviour:
     m_Localized: Enter a unique name for the new player
     m_Metadata:
       m_Items: []
+  - m_Id: 1113753734078464
+    m_Localized: CURRENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1113967945572352
+    m_Localized: GOAL
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

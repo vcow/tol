@@ -91,6 +91,14 @@ MonoBehaviour:
       \u0438\u043C\u044F \u043D\u043E\u0432\u043E\u0433\u043E \u0438\u0433\u0440\u043E\u043A\u0430"
     m_Metadata:
       m_Items: []
+  - m_Id: 1113753734078464
+    m_Localized: "\u0421\u041E\u0421\u0422\u041E\u042F\u041D\u0418\u0415"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1113967945572352
+    m_Localized: "\u0426\u0415\u041B\u042C"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

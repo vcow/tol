@@ -75,6 +75,7 @@ namespace GameScene.Controllers
 
 				var ring = ringInstance.GetComponent<RingController>();
 				ring.onRelease.AddListener(_ => ThrowRing());
+				ring.onSleepAtPosition.AddListener((r, t, p) => _signalBus.TryFire(new PlaceRingSignal(r, t, p)));
 			}
 		}
 

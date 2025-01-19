@@ -5,7 +5,7 @@ namespace GameScene.Controllers
 	[DisallowMultipleComponent, RequireComponent(typeof(Collider))]
 	public sealed class PinController : MonoBehaviour
 	{
-		[SerializeField] private int _towerIndex;
-		[SerializeField] private int _pinIndex;
+		[field: SerializeField] public int TowerIndex { get; private set; }
+		[field: SerializeField] public int PinIndex { get; private set; }
 	}
 }

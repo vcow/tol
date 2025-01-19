@@ -1,12 +1,12 @@
-using System;
 using Models;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Events;
 
 namespace GameScene.Controllers
 {
-	[DisallowMultipleComponent]
+	[DisallowMultipleComponent, RequireComponent(typeof(Rigidbody))]
 	public sealed class RingController : MonoBehaviour
 	{
 		[field: SerializeField] public RingColor RingType { get; private set; }
@@ -17,9 +17,12 @@ namespace GameScene.Controllers
 		// ReSharper disable InconsistentNaming
 		public UnityEvent<RingColor> onCatch;
 		public UnityEvent<RingColor> onRelease;
+		public UnityEvent<RingColor, int, int> onSleepAtPosition;
 		// ReSharper restore InconsistentNaming
 
+		private PinController _pin;
 		private GameObject _connection;
+		private readonly CompositeDisposable _disposables = new();
 
 		private void Start()
 		{
@@ -32,8 +35,11 @@ namespace GameScene.Controllers
 
 		private void OnDestroy()
 		{
+			_disposables.Dispose();
+
 			onCatch.RemoveAllListeners();
 			onRelease.RemoveAllListeners();
+			onSleepAtPosition.RemoveAllListeners();
 		}
 
 		public void JoinTo(Transform connectedObject)
@@ -75,13 +81,24 @@ namespace GameScene.Controllers
 			Release();
 		}
 
-		private void OnTriggerEnter(Collider other)
+		private void OnTriggerStay(Collider other)
 		{
-			Debug.Log("TRIGGER!!!");
+			_pin = other.GetComponent<PinController>();
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			var pin = other.GetComponent<PinController>();
+			if (pin == _pin)
+			{
+				_pin = null;
+			}
 		}
 
 		public void Release()
 		{
+			_disposables.Clear();
+
 			var constraint = _connection.GetComponent<ParentConstraint>();
 			constraint.constraintActive = false;
 			ClearConstraintSources(constraint);
@@ -91,7 +108,35 @@ namespace GameScene.Controllers
 			{
 				Destroy(joint);
 				onRelease.Invoke(RingType);
+
+				DetectSleepAtPosition();
 			}
+		}
+
+		private void DetectSleepAtPosition()
+		{
+			var rb = GetComponent<Rigidbody>();
+			if (rb.IsSleeping())
+			{
+				if (_pin)
+				{
+					onSleepAtPosition.Invoke(RingType, _pin.TowerIndex, _pin.PinIndex);
+				}
+
+				return;
+			}
+
+			rb.ObserveEveryValueChanged(r => r.IsSleeping())
+				.First(b => b)
+				.Subscribe(_ =>
+				{
+					_disposables.Clear();
+					if (_pin)
+					{
+						onSleepAtPosition.Invoke(RingType, _pin.TowerIndex, _pin.PinIndex);
+					}
+				})
+				.AddTo(_disposables);
 		}
 
 		private void ClearConstraintSources(ParentConstraint constraint)

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2491930347218827310}
   - component: {fileID: 8589967973938205568}
   - component: {fileID: 6657844917563770375}
+  - component: {fileID: 2111008540717935690}
   - component: {fileID: 633680223082439241}
   m_Layer: 7
   m_Name: Ring
@@ -205,6 +206,27 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: -0.498, y: 0, z: 0.2875}
+--- !u!65 &2111008540717935690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088964253856734909}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 439
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37, y: 0.03, z: 0.37}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &633680223082439241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +247,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onSleepAtPosition:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &7752636817076813298
