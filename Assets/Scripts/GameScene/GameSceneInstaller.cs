@@ -15,6 +15,7 @@ namespace GameScene
 			Container.DeclareSignal<ThrowRingSignal>();
 			Container.DeclareSignal<CatchRingSignal>();
 			Container.DeclareSignal<CatchWrongRingSignal>();
+			Container.DeclareSignal<PlaceRingSignal>();
 		}
 	}
 }
