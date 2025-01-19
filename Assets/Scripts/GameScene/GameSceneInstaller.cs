@@ -1,3 +1,4 @@
+using GameScene.Logic;
 using GameScene.Signals;
 using Models;
 using Zenject;
@@ -9,8 +10,10 @@ namespace GameScene
 		public override void InstallBindings()
 		{
 			Container.Bind<IPlayerModel>().FromResolveGetter<PlayerModelController>(controller => controller.Model).AsSingle();
+			Container.BindInterfacesAndSelfTo<GameLogic>().AsSingle();
 
 			Container.DeclareSignal<ThrowRingSignal>();
+			Container.DeclareSignal<CatchWrongRingSignal>();
 		}
 	}
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Core.Utils;
 using Core.Utils.TouchHelper;
+using GameScene.Logic;
 using GameScene.Signals;
 using Models;
 using Settings;
@@ -24,6 +25,7 @@ namespace GameScene.Controllers
 		[Inject] private readonly GameSettings _gameSettings;
 		[Inject] private readonly DiContainer _container;
 		[Inject] private readonly SignalBus _signalBus;
+		[Inject] private readonly GameLogic _gameLogic;
 
 		private (GameObject handler, RingController ring) _caught;
 		private Camera _camera;
@@ -58,17 +60,8 @@ namespace GameScene.Controllers
 
 		private void OnThrowRing()
 		{
-			if (_catchMarker)
-			{
-				Assert.IsTrue(_caught.handler == _catchMarker);
-				_catchMarker.SetActive(false);
-			}
-			else
-			{
-				Destroy(_caught.handler);
-			}
-
-			_caught = default;
+			Assert.IsFalse(_caught == default);
+			ThrowRing();
 		}
 
 		private void PopulateRingsFromInitialState(IReadOnlyList<RingColor> rings, TowerBaseController tower)
@@ -134,6 +127,12 @@ namespace GameScene.Controllers
 			var caughtRing = ringHitInfo.transform.GetComponent<RingController>();
 			Assert.IsNotNull(caughtRing);
 
+			if (!_gameLogic.CanTakeRing(caughtRing.RingType))
+			{
+				_signalBus.TryFire<CatchWrongRingSignal>();
+				return;
+			}
+
 			if (_catchMarker)
 			{
 				var markerTransform = _catchMarker.transform;
@@ -166,9 +165,23 @@ namespace GameScene.Controllers
 		private void ReleaseCaughtObject()
 		{
 			Assert.IsFalse(_caught == default);
-
 			_caught.ring.Release();
-			OnThrowRing();
+			ThrowRing();
+		}
+
+		private void ThrowRing()
+		{
+			if (_catchMarker)
+			{
+				Assert.IsTrue(_caught.handler == _catchMarker);
+				_catchMarker.SetActive(false);
+			}
+			else
+			{
+				Destroy(_caught.handler);
+			}
+
+			_caught = default;
 		}
 
 		private void OnValidate()

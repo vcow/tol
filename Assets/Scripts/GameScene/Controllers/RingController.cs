@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using GameScene.Signals;
+using Models;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -10,7 +10,7 @@ namespace GameScene.Controllers
 	[DisallowMultipleComponent]
 	public sealed class RingController : MonoBehaviour
 	{
-		[SerializeField] private Transform[] _anchors;
+		[field: SerializeField] public RingColor RingType { get; private set; }
 		[SerializeField] private float _spring;
 		[SerializeField] private float _breakForce;
 		[SerializeField] private float _damper;
@@ -18,21 +18,16 @@ namespace GameScene.Controllers
 		[Inject] private readonly SignalBus _signalBus;
 
 		private readonly CompositeDisposable _disposables = new();
-		private readonly List<GameObject> _connections = new();
 		private readonly Subject<Unit> _breakJoinObservable = new();
+		private GameObject _connection;
 
 		private void Start()
 		{
-			var ringName = gameObject.name;
-			for (var i = 0; i < _anchors.Length; ++i)
-			{
-				var connect = new GameObject($"{ringName}_Spring{i + 1}Connect",
-					typeof(Rigidbody), typeof(ParentConstraint));
-				var rigidbody = connect.GetComponent<Rigidbody>();
-				rigidbody.isKinematic = true;
-				rigidbody.useGravity = false;
-				_connections.Add(connect);
-			}
+			_connection = new GameObject($"{gameObject.name}_Joint",
+				typeof(Rigidbody), typeof(ParentConstraint));
+			var rigidbody = _connection.GetComponent<Rigidbody>();
+			rigidbody.isKinematic = true;
+			rigidbody.useGravity = false;
 
 			_breakJoinObservable.ThrottleFrame(1)
 				.Subscribe(_ => _signalBus.TryFire<ThrowRingSignal>())
@@ -49,31 +44,32 @@ namespace GameScene.Controllers
 		{
 			Release();
 
-			for (var i = 0; i < _anchors.Length; ++i)
+			var connectPosition = connectedObject.position;
+			var connectPositionLocal = connectPosition - transform.position;
+			_connection.transform.position = connectPosition;
+
+			var joint = gameObject.AddComponent<ConfigurableJoint>();
+			joint.anchor = connectPositionLocal;
+			joint.connectedBody = _connection.GetComponent<Rigidbody>();
+			joint.breakForce = _breakForce;
+			joint.xMotion = ConfigurableJointMotion.Limited;
+			joint.yMotion = ConfigurableJointMotion.Limited;
+			joint.zMotion = ConfigurableJointMotion.Limited;
+			joint.angularXMotion = ConfigurableJointMotion.Limited;
+			joint.angularYMotion = ConfigurableJointMotion.Limited;
+			joint.angularZMotion = ConfigurableJointMotion.Limited;
+			joint.angularXLimitSpring = new SoftJointLimitSpring { spring = _spring, damper = _damper };
+			joint.highAngularXLimit = new SoftJointLimit { limit = 1f };
+			joint.lowAngularXLimit = new SoftJointLimit { limit = 0.5f };
+
+			var constraint = _connection.GetComponent<ParentConstraint>();
+			ClearConstraintSources(constraint);
+			constraint.AddSource(new ConstraintSource
 			{
-				var anchor = _anchors[i];
-				var connection = _connections[i];
-
-				connection.transform.position = anchor.position;
-
-				var spring = gameObject.AddComponent<SpringJoint>();
-				spring.anchor = anchor.localPosition;
-				spring.connectedBody = connection.GetComponent<Rigidbody>();
-				spring.spring = _spring;
-				spring.breakForce = _breakForce;
-				spring.damper = _damper;
-
-				var constraint = connection.GetComponent<ParentConstraint>();
-				ClearConstraintSources(constraint);
-				var offset = anchor.position - connectedObject.position;
-				constraint.AddSource(new ConstraintSource
-				{
-					sourceTransform = connectedObject,
-					weight = 1f
-				});
-				constraint.SetTranslationOffset(0, offset);
-				constraint.constraintActive = true;
-			}
+				sourceTransform = connectedObject,
+				weight = 1f
+			});
+			constraint.constraintActive = true;
 		}
 
 		private void OnJointBreak(float breakForce)
@@ -84,18 +80,12 @@ namespace GameScene.Controllers
 
 		public void Release()
 		{
-			foreach (var connection in _connections)
-			{
-				var constraint = connection.GetComponent<ParentConstraint>();
-				constraint.constraintActive = false;
-				ClearConstraintSources(constraint);
-			}
+			var constraint = _connection.GetComponent<ParentConstraint>();
+			constraint.constraintActive = false;
+			ClearConstraintSources(constraint);
 
-			var springs = GetComponents<SpringJoint>();
-			foreach (var spring in springs)
-			{
-				Destroy(spring);
-			}
+			var joint = GetComponent<ConfigurableJoint>();
+			Destroy(joint);
 		}
 
 		private void ClearConstraintSources(ParentConstraint constraint)
