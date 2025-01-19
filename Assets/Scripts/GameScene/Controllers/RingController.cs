@@ -1,9 +1,8 @@
-using GameScene.Signals;
+using System;
 using Models;
-using UniRx;
 using UnityEngine;
 using UnityEngine.Animations;
-using Zenject;
+using UnityEngine.Events;
 
 namespace GameScene.Controllers
 {
@@ -15,29 +14,26 @@ namespace GameScene.Controllers
 		[SerializeField] private float _breakForce;
 		[SerializeField] private float _damper;
 
-		[Inject] private readonly SignalBus _signalBus;
+		// ReSharper disable InconsistentNaming
+		public UnityEvent<RingColor> onCatch;
+		public UnityEvent<RingColor> onRelease;
+		// ReSharper restore InconsistentNaming
 
-		private readonly CompositeDisposable _disposables = new();
-		private readonly Subject<Unit> _breakJoinObservable = new();
 		private GameObject _connection;
 
 		private void Start()
 		{
 			_connection = new GameObject($"{gameObject.name}_Joint",
 				typeof(Rigidbody), typeof(ParentConstraint));
-			var rigidbody = _connection.GetComponent<Rigidbody>();
-			rigidbody.isKinematic = true;
-			rigidbody.useGravity = false;
-
-			_breakJoinObservable.ThrottleFrame(1)
-				.Subscribe(_ => _signalBus.TryFire<ThrowRingSignal>())
-				.AddTo(_disposables);
+			var rb = _connection.GetComponent<Rigidbody>();
+			rb.isKinematic = true;
+			rb.useGravity = false;
 		}
 
 		private void OnDestroy()
 		{
-			_breakJoinObservable.OnCompleted();
-			_disposables.Dispose();
+			onCatch.RemoveAllListeners();
+			onRelease.RemoveAllListeners();
 		}
 
 		public void JoinTo(Transform connectedObject)
@@ -70,12 +66,18 @@ namespace GameScene.Controllers
 				weight = 1f
 			});
 			constraint.constraintActive = true;
+
+			onCatch.Invoke(RingType);
 		}
 
 		private void OnJointBreak(float breakForce)
 		{
 			Release();
-			_breakJoinObservable.OnNext(Unit.Default);
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			Debug.Log("TRIGGER!!!");
 		}
 
 		public void Release()
@@ -85,7 +87,11 @@ namespace GameScene.Controllers
 			ClearConstraintSources(constraint);
 
 			var joint = GetComponent<ConfigurableJoint>();
-			Destroy(joint);
+			if (joint)
+			{
+				Destroy(joint);
+				onRelease.Invoke(RingType);
+			}
 		}
 
 		private void ClearConstraintSources(ParentConstraint constraint)

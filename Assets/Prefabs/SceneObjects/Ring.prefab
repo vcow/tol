@@ -219,8 +219,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <RingType>k__BackingField: 0
   _spring: 1000
-  _breakForce: 10000
+  _breakForce: 5000
   _damper: 200
+  onCatch:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7752636817076813298
 PrefabInstance:
   m_ObjectHideFlags: 0

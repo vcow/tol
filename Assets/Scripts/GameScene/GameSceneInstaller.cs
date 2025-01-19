@@ -13,6 +13,7 @@ namespace GameScene
 			Container.BindInterfacesAndSelfTo<GameLogic>().AsSingle();
 
 			Container.DeclareSignal<ThrowRingSignal>();
+			Container.DeclareSignal<CatchRingSignal>();
 			Container.DeclareSignal<CatchWrongRingSignal>();
 		}
 	}

@@ -17,9 +17,9 @@ namespace GameScene.Controllers
 	{
 		[SerializeField] private CinemachineTargetGroup _cinemachineTargetGroup;
 		[SerializeField] private GameObject _catchMarker;
-		[Header("Towers"), SerializeField] private TowerBaseController _tower1;
-		[SerializeField] private TowerBaseController _tower2;
-		[SerializeField] private TowerBaseController _tower3;
+		[Header("Towers"), SerializeField] private TowerController _tower1;
+		[SerializeField] private TowerController _tower2;
+		[SerializeField] private TowerController _tower3;
 
 		[Inject] private readonly LevelModel _levelModel;
 		[Inject] private readonly GameSettings _gameSettings;
@@ -49,22 +49,9 @@ namespace GameScene.Controllers
 			PopulateRingsFromInitialState(_levelModel.InitialState.tower2, _tower2);
 			PopulateRingsFromInitialState(_levelModel.InitialState.tower3, _tower3);
 			_cinemachineTargetGroup.DoUpdate();
-
-			_signalBus.Subscribe<ThrowRingSignal>(OnThrowRing);
 		}
 
-		private void OnDestroy()
-		{
-			_signalBus.Unsubscribe<ThrowRingSignal>(OnThrowRing);
-		}
-
-		private void OnThrowRing()
-		{
-			Assert.IsFalse(_caught == default);
-			ThrowRing();
-		}
-
-		private void PopulateRingsFromInitialState(IReadOnlyList<RingColor> rings, TowerBaseController tower)
+		private void PopulateRingsFromInitialState(IReadOnlyList<RingColor> rings, TowerController tower)
 		{
 			var yOffset = 0f;
 			var baseBounds = tower.Bounds;
@@ -85,6 +72,9 @@ namespace GameScene.Controllers
 					Radius = 1f,
 					Weight = 1f
 				});
+
+				var ring = ringInstance.GetComponent<RingController>();
+				ring.onRelease.AddListener(_ => ThrowRing());
 			}
 		}
 
@@ -152,6 +142,8 @@ namespace GameScene.Controllers
 			_startDragPosition = _caught.handler.transform.position;
 			_dragPlaneDistance = (_startDragPosition - _camera.transform.position).magnitude;
 			_startMousePosition = _camera.ScreenToWorldPoint(new Vector3(touchPoint.x, touchPoint.y, _dragPlaneDistance));
+
+			_signalBus.TryFire(new CatchRingSignal(caughtRing.RingType));
 		}
 
 		private void MoveCaughtObject(Vector2 touchPoint)
@@ -166,11 +158,11 @@ namespace GameScene.Controllers
 		{
 			Assert.IsFalse(_caught == default);
 			_caught.ring.Release();
-			ThrowRing();
 		}
 
 		private void ThrowRing()
 		{
+			Assert.IsFalse(_caught == default);
 			if (_catchMarker)
 			{
 				Assert.IsTrue(_caught.handler == _catchMarker);
@@ -182,6 +174,7 @@ namespace GameScene.Controllers
 			}
 
 			_caught = default;
+			_signalBus.TryFire<ThrowRingSignal>();
 		}
 
 		private void OnValidate()

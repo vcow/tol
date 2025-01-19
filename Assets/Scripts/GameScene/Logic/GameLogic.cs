@@ -37,9 +37,10 @@ namespace GameScene.Logic
 		}
 
 		public bool CanTakeRing(RingColor ring) => Hands.Value == ring ||
-		                                           _tower1.Any() && _tower1.Last() == ring ||
-		                                           _tower2.Any() && _tower2.Last() == ring ||
-		                                           _tower3.Any() && _tower3.Last() == ring;
+		                                           (!Hands.Value.HasValue &&
+		                                            (_tower1.Any() && _tower1.Last() == ring ||
+		                                             _tower2.Any() && _tower2.Last() == ring ||
+		                                             _tower3.Any() && _tower3.Last() == ring));
 
 		void IDisposable.Dispose()
 		{

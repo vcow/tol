@@ -3,7 +3,7 @@ using UnityEngine;
 namespace GameScene.Controllers
 {
 	[DisallowMultipleComponent]
-	public sealed class TowerBaseController : MonoBehaviour
+	public sealed class TowerController : MonoBehaviour
 	{
 		[SerializeField] private Collider _base;
 		[SerializeField] private GameObject[] _pins;

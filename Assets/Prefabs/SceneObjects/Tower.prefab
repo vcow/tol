@@ -40,7 +40,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912686775502199172}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3f253f892b1c84c11aa3093fede7b9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -96,7 +96,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251575259043473636}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3f253f892b1c84c11aa3093fede7b9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -152,7 +152,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365275270562811458}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3f253f892b1c84c11aa3093fede7b9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -208,7 +208,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4648921745620167956}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3f253f892b1c84c11aa3093fede7b9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -264,7 +264,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5185916619510539225}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3f253f892b1c84c11aa3093fede7b9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 2693206556536036170}
   - component: {fileID: 6690394543082340848}
   m_Layer: 0
-  m_Name: TowerBase
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +429,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8546055235653250913}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3f253f892b1c84c11aa3093fede7b9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
