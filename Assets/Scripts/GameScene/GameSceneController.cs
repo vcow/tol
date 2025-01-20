@@ -4,6 +4,7 @@ using Core.SoundManager;
 using Core.WindowManager;
 using Core.WindowManager.Template;
 using GameScene.Logic;
+using GameScene.Signals;
 using Models;
 using Settings;
 using UI.Windows;
@@ -26,6 +27,7 @@ namespace GameScene
 		[Inject] private readonly PlayerModelController _playerModelController;
 		[Inject] private readonly LevelsProvider _levelsProvider;
 		[Inject] private readonly ZenjectSceneLoader _sceneLoader;
+		[Inject] private readonly SignalBus _signalBus;
 		[InjectOptional] private readonly bool _doNotShowTutorial;
 
 		private void Start()
@@ -42,11 +44,20 @@ namespace GameScene
 			_gameLogic.GameResult.First(result => result == GameLogic.Result.Win).Subscribe(_ => OnWin()).AddTo(_disposables);
 			_gameLogic.GameResult.First(result => result == GameLogic.Result.Lose).Subscribe(_ => OnLose()).AddTo(_disposables);
 
+			_signalBus.Subscribe<CatchWrongRingSignal>(OnCatchWrongRing);
+			_gameLogic.Step.Skip(1).Subscribe(_ => _soundManager.PlaySound("bell_ding")).AddTo(_disposables);
+
 			_soundManager.PlayMusic("Together");
+		}
+
+		private void OnCatchWrongRing()
+		{
+			_soundManager.PlaySound("error_sound");
 		}
 
 		private void OnDestroy()
 		{
+			_signalBus.Unsubscribe<CatchWrongRingSignal>(OnCatchWrongRing);
 			_disposables.Dispose();
 		}
 

@@ -110,17 +110,17 @@ namespace GameScene.Logic
 			if (!Hands.Value.HasValue)
 			{
 				ReactiveCollection<RingColor> fromTower;
-				if (_tower1.LastOrDefault() == signal.RingType)
+				if (_tower1.Any() && _tower1.Last() == signal.RingType)
 				{
 					fromTower = _tower1;
 					_fromTowerIndex = 0;
 				}
-				else if (_tower2.LastOrDefault() == signal.RingType)
+				else if (_tower2.Any() && _tower2.Last() == signal.RingType)
 				{
 					fromTower = _tower2;
 					_fromTowerIndex = 1;
 				}
-				else if (_tower3.LastOrDefault() == signal.RingType)
+				else if (_tower3.Any() && _tower3.Last() == signal.RingType)
 				{
 					fromTower = _tower3;
 					_fromTowerIndex = 2;
