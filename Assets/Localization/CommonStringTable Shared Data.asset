@@ -111,6 +111,26 @@ MonoBehaviour:
     m_Key: replay_player_message
     m_Metadata:
       m_Items: []
+  - m_Id: 1366766105124864
+    m_Key: exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1366997274189824
+    m_Key: next_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1369292439281664
+    m_Key: replay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1370491762761728
+    m_Key: win_caps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1370572641525760
+    m_Key: loose_caps
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

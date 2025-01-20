@@ -11,7 +11,7 @@ using Zenject;
 
 namespace UI.Windows
 {
-	public class NewPlayerWindow : BaseScaleFxPopup<DialogButtonType>
+	public sealed class NewPlayerWindow : BaseScaleFxPopup<DialogButtonType>
 	{
 		public const string Id = nameof(NewPlayerWindow);
 

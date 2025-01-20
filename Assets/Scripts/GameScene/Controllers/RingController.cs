@@ -30,7 +30,7 @@ namespace GameScene.Controllers
 
 		private AudioSource _audioSource;
 
-		private float _startTime;
+		private float _startTime = float.MaxValue;
 		private bool _initializeInStartPosition;
 
 		private CharacterJoint _inPositionLockJoint;

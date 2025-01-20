@@ -116,6 +116,26 @@ MonoBehaviour:
       1. Are you sure?
     m_Metadata:
       m_Items: []
+  - m_Id: 1366766105124864
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1366997274189824
+    m_Localized: Next level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1369292439281664
+    m_Localized: Replay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1370491762761728
+    m_Localized: YOU WIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1370572641525760
+    m_Localized: YOU LOOSE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
