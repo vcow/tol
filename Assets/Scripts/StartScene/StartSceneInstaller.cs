@@ -14,6 +14,7 @@ namespace StartScene
 
 			Container.DeclareSignal<AddPlayerSignal>();
 			Container.DeclareSignal<RemovePlayerSignal>();
+			Container.DeclareSignal<ResetPlayerSignal>();
 			Container.DeclareSignal<StartPlayGameSignal>();
 		}
 	}

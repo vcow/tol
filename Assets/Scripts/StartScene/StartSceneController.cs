@@ -33,6 +33,7 @@ namespace StartScene
 
 			_signalBus.Subscribe<AddPlayerSignal>(OnAddPlayer);
 			_signalBus.Subscribe<RemovePlayerSignal>(OnRemovePlayer);
+			_signalBus.Subscribe<ResetPlayerSignal>(OnResetPlayer);
 			_signalBus.Subscribe<StartPlayGameSignal>(OnStartPlayGame);
 		}
 
@@ -53,18 +54,29 @@ namespace StartScene
 			_gameModelController.RemovePlayer(signal.Name);
 		}
 
+		private void OnResetPlayer(ResetPlayerSignal signal)
+		{
+			var player = _gameModelController.ResetPlayer(signal.Name);
+			StartPlayGame(player.LastLevel.Value + 1, player.Name);
+		}
+
 		private void OnStartPlayGame(StartPlayGameSignal signal)
 		{
-			if (!_levelsProvider.Levels.TryGetValue(signal.FromLevel, out var levelModel))
+			StartPlayGame(signal.FromLevel, signal.PlayerName);
+		}
+
+		private void StartPlayGame(int fromLevel, string playerName)
+		{
+			if (!_levelsProvider.Levels.TryGetValue(fromLevel, out var levelModel))
 			{
-				Debug.LogError($"Can't find level {signal.FromLevel} in the LevelsProvider.");
+				Debug.LogError($"Can't find level {fromLevel} in the LevelsProvider.");
 				return;
 			}
 
-			var playerModelController = _gameModelController.GetPlayerController(signal.PlayerName);
+			var playerModelController = _gameModelController.GetPlayerController(playerName);
 			if (playerModelController == null)
 			{
-				Debug.LogError($"Can't find player {signal.PlayerName} in the PlayersList.");
+				Debug.LogError($"Can't find player {playerName} in the PlayersList.");
 				return;
 			}
 

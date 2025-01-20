@@ -64,6 +64,30 @@ namespace UI.Windows
 		public void OnReplay()
 		{
 			Assert.IsNotNull(_selectedItem);
+			var messageWindow = (MessageWindow)_windowManager.ShowWindow(MessageWindow.Id,
+				new object[]
+				{
+					("replay_player_title", "replay_player_message"),
+					new object[] { _selectedItem.Name },
+					DialogButtonType.YesNo
+				});
+			IDisposable closeHandler = null;
+			closeHandler = Observable.FromEvent<CloseWindowHandler, (IWindow window, DialogButtonType result)>(
+					h => (window, result) => h((window, result)),
+					h => messageWindow.CloseWindowEvent += h,
+					h => messageWindow.CloseWindowEvent -= h)
+				.Subscribe(tuple =>
+				{
+					// ReSharper disable once AccessToModifiedClosure
+					_disposables.Remove(closeHandler);
+
+					if (tuple.result == DialogButtonType.Yes)
+					{
+						Close();
+						_signalBus.TryFire(new ResetPlayerSignal(_selectedItem.Name));
+					}
+				})
+				.AddTo(_disposables);
 		}
 
 		public void OnDelete()

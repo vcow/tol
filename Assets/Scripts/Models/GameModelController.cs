@@ -97,6 +97,18 @@ namespace Models
 			return true;
 		}
 
+		public IPlayerModel ResetPlayer(string name)
+		{
+			if (!_playerModelControllers.TryGetValue(name, out var playerModelController))
+			{
+				return null;
+			}
+
+			playerModelController.SetLastLevel(-1);
+			playerModelController.AddScores(0, false);
+			return playerModelController.Model;
+		}
+
 		public PlayerModelController GetPlayerController(string name)
 		{
 			return _playerModelControllers.GetValueOrDefault(name);

@@ -21,15 +21,15 @@ namespace Models
 		{
 		}
 
-		public uint AddScores(uint scores)
+		public uint AddScores(uint value, bool increment = true)
 		{
-			_playerModel.Scores.Value += scores;
+			_playerModel.Scores.Value = increment ? _playerModel.Scores.Value + value : value;
 			return _playerModel.Scores.Value;
 		}
 
 		public void SetLastLevel(int lastLevel)
 		{
-			_playerModel.LastLevel.Value = Mathf.Max(lastLevel, 0);
+			_playerModel.LastLevel.Value = Mathf.Max(lastLevel, -1);
 		}
 
 		public static implicit operator PlayerModelRecord(PlayerModelController controller) => new PlayerModelRecord
