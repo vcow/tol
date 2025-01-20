@@ -1,0 +1,25 @@
+{
+  "initial_state": {
+    "tower1": [
+      "Red",
+      "Green"
+    ],
+    "tower2": [],
+    "tower3": [
+      "Blue"
+    ]
+  },
+  "goal_state": {
+    "tower1": [
+      "Blue"
+    ],
+    "tower2": [
+      "Green"
+    ],
+    "tower3": [
+      "Red"
+    ]
+  },
+  "min_steps": 6,
+  "max_steps": 9
+}

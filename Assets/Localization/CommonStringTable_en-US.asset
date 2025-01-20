@@ -136,6 +136,20 @@ MonoBehaviour:
     m_Localized: YOU LOOSE
     m_Metadata:
       m_Items: []
+  - m_Id: 1393021256982528
+    m_Localized: 'Move camera with WASD or arrow keys.
+
+      Zoom camera with the
+      Mouse wheel.
+
+      Rearrange the rings to get the desired combination in the
+      specified number of moves. You can only take the top rings.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1393903482691584
+    m_Localized: Click to close
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

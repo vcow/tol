@@ -131,6 +131,14 @@ MonoBehaviour:
     m_Key: loose_caps
     m_Metadata:
       m_Items: []
+  - m_Id: 1393021256982528
+    m_Key: tutorial_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1393903482691584
+    m_Key: click_to_close
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
