@@ -1,5 +1,6 @@
 using System;
 using UniRx;
+using UnityEngine;
 
 namespace Models
 {
@@ -12,12 +13,23 @@ namespace Models
 
 		public PlayerModelController(string name, uint scores, int lastLevel)
 		{
-			_playerModel = new PlayerModelImpl(name);
+			_playerModel = new PlayerModelImpl(name, scores, lastLevel);
 			_disposables = new CompositeDisposable(_playerModel);
 		}
 
 		public PlayerModelController(PlayerModelRecord record) : this(record.name, record.scores, record.lastLevel)
 		{
+		}
+
+		public uint AddScores(uint scores)
+		{
+			_playerModel.Scores.Value += scores;
+			return _playerModel.Scores.Value;
+		}
+
+		public void SetLastLevel(int lastLevel)
+		{
+			_playerModel.LastLevel.Value = Mathf.Max(lastLevel, 0);
 		}
 
 		public static implicit operator PlayerModelRecord(PlayerModelController controller) => new PlayerModelRecord

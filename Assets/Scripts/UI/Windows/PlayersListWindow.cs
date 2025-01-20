@@ -51,6 +51,7 @@ namespace UI.Windows
 		public void OnContinue()
 		{
 			Assert.IsNotNull(_selectedItem);
+			Close();
 			_signalBus.TryFire(new StartPlayGameSignal(_selectedItem.Name, _selectedItem.LastLevel.Value + 1));
 		}
 
@@ -162,9 +163,9 @@ namespace UI.Windows
 			Assert.IsNotNull(playerModel);
 			_selectedItem = playerModel;
 
-			_continueButton.interactable = playerModel.LastLevel.Value < _levelsProvider.Levels.Count;
+			_continueButton.interactable = playerModel.LastLevel.Value < _levelsProvider.Levels.Count - 1;
 			_deleteButton.interactable = true;
-			_replayButton.interactable = playerModel.LastLevel.Value > 0;
+			_replayButton.interactable = playerModel.LastLevel.Value >= 0;
 		}
 
 		protected override void OnDestroy()

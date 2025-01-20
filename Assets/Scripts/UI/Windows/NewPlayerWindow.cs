@@ -60,8 +60,8 @@ namespace UI.Windows
 				.Subscribe(evt => _signalBus.TryFire(new StartPlayGameSignal(evt.Value.Name, 0)))
 				.AddTo(_disposables);
 
-			_signalBus.TryFire(new AddPlayerSignal(newPlayerName));
 			Close();
+			_signalBus.TryFire(new AddPlayerSignal(newPlayerName));
 		}
 
 		protected override void OnDestroy()

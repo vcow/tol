@@ -95,6 +95,14 @@ MonoBehaviour:
     m_Localized: GOAL
     m_Metadata:
       m_Items: []
+  - m_Id: 1190755497402368
+    m_Localized: 'Scores:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1190835910598656
+    m_Localized: 'Steps:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
