@@ -2,6 +2,7 @@ using Models;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 namespace GameScene.Controllers
@@ -9,6 +10,8 @@ namespace GameScene.Controllers
 	[DisallowMultipleComponent, RequireComponent(typeof(Rigidbody), typeof(AudioSource))]
 	public sealed class RingController : MonoBehaviour
 	{
+		private const float MuteOnStartDelayTime = 1f;
+
 		[field: SerializeField] public RingColor RingType { get; private set; }
 		[SerializeField] private float _spring;
 		[SerializeField] private float _breakForce;
@@ -27,6 +30,11 @@ namespace GameScene.Controllers
 
 		private AudioSource _audioSource;
 
+		private float _startTime;
+		private bool _initializeInStartPosition;
+
+		private CharacterJoint _inPositionLockJoint;
+
 		private void Awake()
 		{
 			_audioSource = GetComponent<AudioSource>();
@@ -34,11 +42,14 @@ namespace GameScene.Controllers
 
 		private void Start()
 		{
+			_startTime = Time.time;
 			_connection = new GameObject($"{gameObject.name}_Joint",
 				typeof(Rigidbody), typeof(ParentConstraint));
 			var rb = _connection.GetComponent<Rigidbody>();
 			rb.isKinematic = true;
 			rb.useGravity = false;
+
+			DetectSleepAtPosition();
 		}
 
 		private void OnDestroy()
@@ -52,6 +63,11 @@ namespace GameScene.Controllers
 
 		public void JoinTo(Transform connectedObject)
 		{
+			if (!_initializeInStartPosition)
+			{
+				return;
+			}
+
 			Release();
 
 			var connectPosition = connectedObject.position;
@@ -105,6 +121,11 @@ namespace GameScene.Controllers
 
 		private void OnCollisionEnter(Collision other)
 		{
+			if (Time.time - _startTime < MuteOnStartDelayTime)
+			{
+				return;
+			}
+
 			var otherLayerMask = 1 << other.collider.gameObject.layer;
 			if ((_collideSoundLayerMask.value & otherLayerMask) == 0 ||
 			    _audioSource.isPlaying)
@@ -117,6 +138,8 @@ namespace GameScene.Controllers
 
 		public void Release()
 		{
+			UnlockRing();
+
 			_disposables.Clear();
 
 			var constraint = _connection.GetComponent<ParentConstraint>();
@@ -140,7 +163,7 @@ namespace GameScene.Controllers
 			{
 				if (_pin)
 				{
-					onSleepAtPosition.Invoke(RingType, _pin.TowerIndex, _pin.PinIndex);
+					LockRing();
 				}
 
 				return;
@@ -153,7 +176,7 @@ namespace GameScene.Controllers
 					_disposables.Clear();
 					if (_pin)
 					{
-						onSleepAtPosition.Invoke(RingType, _pin.TowerIndex, _pin.PinIndex);
+						LockRing();
 					}
 				})
 				.AddTo(_disposables);
@@ -164,6 +187,36 @@ namespace GameScene.Controllers
 			for (var i = constraint.sourceCount - 1; i >= 0; --i)
 			{
 				constraint.RemoveSource(i);
+			}
+		}
+
+		private void LockRing()
+		{
+			Assert.IsNotNull(_pin);
+			UnlockRing();
+
+			var pinRb = _pin.GetComponentInParent<Rigidbody>();
+			Assert.IsNotNull(pinRb);
+
+			_inPositionLockJoint = gameObject.AddComponent<CharacterJoint>();
+			_inPositionLockJoint.connectedBody = pinRb;
+
+			if (_initializeInStartPosition)
+			{
+				onSleepAtPosition.Invoke(RingType, _pin.TowerIndex, _pin.PinIndex);
+			}
+			else
+			{
+				_initializeInStartPosition = true;
+			}
+		}
+
+		private void UnlockRing()
+		{
+			if (_inPositionLockJoint)
+			{
+				Destroy(_inPositionLockJoint);
+				_inPositionLockJoint = null;
 			}
 		}
 	}
