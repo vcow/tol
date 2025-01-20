@@ -16,6 +16,8 @@ namespace UI.Windows
 	{
 		public const string Id = nameof(PlayersListWindow);
 
+		private const float DisabledButtonsAlpha = 0.5f;
+
 		private readonly CompositeDisposable _disposables = new();
 
 		[Header("Buttons"), SerializeField] private Button _continueButton;
@@ -33,6 +35,10 @@ namespace UI.Windows
 		[Inject] private readonly LevelsProvider _levelsProvider;
 
 		private IPlayerModel _selectedItem;
+
+		private CanvasGroup _continueButtonCanvasGroup;
+		private CanvasGroup _replayButtonCanvasGroup;
+		private CanvasGroup _deleteButtonCanvasGroup;
 
 		protected override string GetWindowId()
 		{
@@ -90,6 +96,11 @@ namespace UI.Windows
 
 		private void Start()
 		{
+			_continueButtonCanvasGroup = _continueButton.GetComponent<CanvasGroup>();
+			_replayButtonCanvasGroup = _replayButton.GetComponent<CanvasGroup>();
+			_deleteButtonCanvasGroup = _deleteButton.GetComponent<CanvasGroup>();
+			Assert.IsTrue(_continueButtonCanvasGroup && _replayButtonCanvasGroup && _deleteButtonCanvasGroup);
+
 			DisableAllButtons();
 
 			_gameModel.Players.ObserveAdd().Subscribe(OnAddItem).AddTo(_disposables);
@@ -133,6 +144,10 @@ namespace UI.Windows
 			_continueButton.interactable = false;
 			_deleteButton.interactable = false;
 			_replayButton.interactable = false;
+
+			_continueButtonCanvasGroup.alpha = DisabledButtonsAlpha;
+			_deleteButtonCanvasGroup.alpha = DisabledButtonsAlpha;
+			_replayButtonCanvasGroup.alpha = DisabledButtonsAlpha;
 		}
 
 		private void CreateListItem(IPlayerModel playerModel, bool selectItem)
@@ -163,9 +178,30 @@ namespace UI.Windows
 			Assert.IsNotNull(playerModel);
 			_selectedItem = playerModel;
 
-			_continueButton.interactable = playerModel.LastLevel.Value < _levelsProvider.Levels.Count - 1;
 			_deleteButton.interactable = true;
-			_replayButton.interactable = playerModel.LastLevel.Value >= 0;
+			_deleteButtonCanvasGroup.alpha = 1f;
+
+			if (playerModel.LastLevel.Value < _levelsProvider.Levels.Count - 1)
+			{
+				_continueButton.interactable = true;
+				_continueButtonCanvasGroup.alpha = 1f;
+			}
+			else
+			{
+				_continueButton.interactable = false;
+				_continueButtonCanvasGroup.alpha = DisabledButtonsAlpha;
+			}
+
+			if (playerModel.LastLevel.Value >= 0)
+			{
+				_replayButton.interactable = true;
+				_replayButtonCanvasGroup.alpha = 1f;
+			}
+			else
+			{
+				_replayButton.interactable = true;
+				_replayButtonCanvasGroup.alpha = DisabledButtonsAlpha;
+			}
 		}
 
 		protected override void OnDestroy()

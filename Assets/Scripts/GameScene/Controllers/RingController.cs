@@ -6,13 +6,14 @@ using UnityEngine.Events;
 
 namespace GameScene.Controllers
 {
-	[DisallowMultipleComponent, RequireComponent(typeof(Rigidbody))]
+	[DisallowMultipleComponent, RequireComponent(typeof(Rigidbody), typeof(AudioSource))]
 	public sealed class RingController : MonoBehaviour
 	{
 		[field: SerializeField] public RingColor RingType { get; private set; }
 		[SerializeField] private float _spring;
 		[SerializeField] private float _breakForce;
 		[SerializeField] private float _damper;
+		[SerializeField] private LayerMask _collideSoundLayerMask;
 
 		// ReSharper disable InconsistentNaming
 		public UnityEvent<RingColor> onCatch;
@@ -23,6 +24,13 @@ namespace GameScene.Controllers
 		private PinController _pin;
 		private GameObject _connection;
 		private readonly CompositeDisposable _disposables = new();
+
+		private AudioSource _audioSource;
+
+		private void Awake()
+		{
+			_audioSource = GetComponent<AudioSource>();
+		}
 
 		private void Start()
 		{
@@ -93,6 +101,18 @@ namespace GameScene.Controllers
 			{
 				_pin = null;
 			}
+		}
+
+		private void OnCollisionEnter(Collision other)
+		{
+			var otherLayerMask = 1 << other.collider.gameObject.layer;
+			if ((_collideSoundLayerMask.value & otherLayerMask) == 0 ||
+			    _audioSource.isPlaying)
+			{
+				return;
+			}
+
+			_audioSource.Play();
 		}
 
 		public void Release()

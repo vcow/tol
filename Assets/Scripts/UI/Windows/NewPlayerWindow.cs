@@ -15,6 +15,8 @@ namespace UI.Windows
 	{
 		public const string Id = nameof(NewPlayerWindow);
 
+		private const float DisabledButtonsAlpha = 0.5f;
+
 		private const int MinNameLength = 3;
 
 		private readonly CompositeDisposable _disposables = new();
@@ -26,10 +28,16 @@ namespace UI.Windows
 		[Inject] private readonly SignalBus _signalBus;
 
 		private string[] _names;
+		private CanvasGroup _okButtonCanvasGroup;
 
 		private void Start()
 		{
+			_okButtonCanvasGroup = _okButton.GetComponent<CanvasGroup>();
+			Assert.IsTrue(_okButtonCanvasGroup);
+
 			_names = _gameModel.Players.Select(model => model.Name).ToArray();
+
+			OnNameValueChanged(string.Empty);
 		}
 
 		protected override string GetWindowId()
@@ -43,8 +51,16 @@ namespace UI.Windows
 
 		public void OnNameValueChanged(string value)
 		{
-			var isValid = value.Length >= MinNameLength && !_names.Contains(value);
-			_okButton.interactable = isValid;
+			if (value.Length >= MinNameLength && !_names.Contains(value))
+			{
+				_okButton.interactable = true;
+				_okButtonCanvasGroup.alpha = 1f;
+			}
+			else
+			{
+				_okButton.interactable = false;
+				_okButtonCanvasGroup.alpha = DisabledButtonsAlpha;
+			}
 		}
 
 		public void OnClose()

@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: steps
     m_Metadata:
       m_Items: []
+  - m_Id: 1312796586270720
+    m_Key: level
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

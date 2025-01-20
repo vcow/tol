@@ -1,3 +1,4 @@
+using Core.WindowManager;
 using GameScene.Logic;
 using GameScene.Signals;
 using Models;
@@ -9,6 +10,7 @@ namespace GameScene
 	{
 		public override void InstallBindings()
 		{
+			Container.BindInterfacesTo<WindowManager>().AsSingle();
 			Container.Bind<IPlayerModel>().FromResolveGetter<PlayerModelController>(controller => controller.Model).AsSingle();
 			Container.BindInterfacesAndSelfTo<GameLogic>().AsSingle();
 

@@ -1,9 +1,8 @@
 using Core.ScreenLocker;
-using GameScene.Controllers;
-using Models;
-using Settings;
+using Core.SoundManager;
+using Core.WindowManager;
+using UI.Windows;
 using UnityEngine;
-using UnityEngine.Assertions;
 using Zenject;
 
 namespace GameScene
@@ -12,6 +11,8 @@ namespace GameScene
 	public sealed class GameSceneController : MonoBehaviour
 	{
 		[Inject] private readonly IScreenLockerManager _screenLockerManager;
+		[Inject] private readonly IWindowManager _windowManager;
+		[Inject] private readonly ISoundManager _soundManager;
 
 		private void Start()
 		{
@@ -23,10 +24,17 @@ namespace GameScene
 			{
 				OnSceneUnlock(LockerType.Undefined);
 			}
+
+			_soundManager.PlayMusic("Together");
 		}
 
 		private void OnSceneUnlock(LockerType _)
 		{
+		}
+
+		public void OnOpenSettings()
+		{
+			_windowManager.ShowWindow(SettingsWindow.Id);
 		}
 	}
 }

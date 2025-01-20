@@ -130,6 +130,7 @@ namespace Core.SoundManager
 
 			if (_musicAudioSource.clip)
 			{
+				var currentVolume = _musicVolume ?? 1f;
 				_tween?.Kill();
 				_tween = DOTween.To(() => MusicVolume, vol => MusicVolume = vol, 0f, MusicOffDuration)
 					.SetEase(Ease.InQuad)
@@ -139,6 +140,7 @@ namespace Core.SoundManager
 						_musicAudioSource.Stop();
 						_musicAudioSource.clip = null;
 
+						MusicVolume = currentVolume;
 						StartMusic(musicName, fadeDurationSec);
 					});
 			}
@@ -238,7 +240,7 @@ namespace Core.SoundManager
 				if (fadeDuration > 0)
 				{
 					MusicVolume = 0f;
-					_tween = DOTween.To(() => MusicVolume, vol => MusicVolume = vol, currentVolume, fadeDuration)
+					_tween = DOTween.To(() => 0f, vol => MusicVolume = vol, currentVolume, fadeDuration)
 						.SetEase(Ease.OutQuad)
 						.OnComplete(() => _tween = null);
 				}

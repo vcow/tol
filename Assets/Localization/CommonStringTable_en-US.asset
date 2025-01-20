@@ -103,6 +103,10 @@ MonoBehaviour:
     m_Localized: 'Steps:'
     m_Metadata:
       m_Items: []
+  - m_Id: 1312796586270720
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
